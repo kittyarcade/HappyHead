@@ -6,7 +6,7 @@ var userRouter = require('./router/route1');
 var twilioCreds = require('./smsconfig.json');
 
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+//.use(bodyParser.json());
 app.use( express.static( "public" ));
 app.use('/router', userRouter);
 
