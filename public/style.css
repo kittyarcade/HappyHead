@@ -1,0 +1,25 @@
+.jumbotron{
+  background-color: #cdaae6 !important;
+  font-size: 60px;
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.yes{
+  margin-left: 120px;
+  display: inline-block;;
+}
+
+img {
+  width: 300px;
+  height: auto;
+}

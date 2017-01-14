@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="vendors/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/client.js"></script>
+    <!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <title>Pets App</title>
+  </head>
+  <body ng-app='myApp'>
+    <div ng-controller='Hoth'>
+      <div class ='container'>
+      <div class='jumbotron'>Pets! Pets! Pets!</div>
+      <p>A place  to store all your pet records.<p>
+        <h3>Enter information about pet:</h3>
+        <div class = 'form-group'>
+        <input type="text"  class='form-control' placeholder='Name of Pet' ng-model='petName'></input>
+        </div>
+        <div class ='form-group'>
+        <input type="text" class='form-control' placeholder='Type (i.e. dog, cat, etc)' ng-model='petType'></input>
+        </div>
+        <div class ='form-group'>
+        <input type="number" class='form-control' placeholder='Age'ng-model='petAge'></input>
+        </div>
+        <div class='form-group'>
+        <input type="text" class='form-control' placeholder='Image URL of Pet' ng-model='petImg'></input>
+        </div>
+        <button class= 'btn btn-info btn-block' ng-click='submit()'>Submit Pet Info</button>
+      </div>
+        <div ng-repeat ='pet in collection'>
+          <div class='yes'>
+          <div class="col-md-12">
+          <table class='table table-striped'>
+            <tbody>
+              <tr>
+          <img class = 'img-responsive' ng-src="{{pet.Image}}"/>
+          {{pet.Name}},
+          {{pet.Animal}},
+          {{pet.Age}} years old
+          <button class='btn btn-danger' ng-click='deletePet(pet._id)'>Delete</button>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+    </div>
+  </body>
+</html>
