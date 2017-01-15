@@ -40,8 +40,8 @@ app.post('/twilio', function(req,res){
     url='https://projects.invisionapp.com/share/6NA1B95RV#/screens';
   }
   client.messages.create({
-      to: "+16126186587",
-      from: "+16122497350",
+      to: "+15555555555",
+      from: "+15555555555",
       body: numberOfHits  +" hit(s). To view data click here: "+ url
   }, function(err, message) {
       res.send(message.sid);
