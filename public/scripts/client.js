@@ -2,9 +2,9 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   function start() {
-          var deviceID = "2a0022000947353138383138",
+          var deviceID = "actual device id",
               tempSpan = document.getElementById("uptime"),
-              accessToken = "bde3b78aa80ae0789693bd5f91af1119ddeb4e25",
+              accessToken = "actual active token",
               eventSource = new EventSource("https://api.particle.io/v1/devices/" + deviceID + "/events/?access_token=" + accessToken),
               lowCount = 0,
               mediumCount = 0,
