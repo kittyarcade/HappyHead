@@ -13,21 +13,14 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
           var accessToken = "bde3b78aa80ae0789693bd5f91af1119ddeb4e25";
           var eventSource = new EventSource("https://api.particle.io/v1/devices/" + deviceID + "/events/?access_token=" + accessToken);
 
-
-          // eventSource.addEventListener('open', function(e) {
-          //     console.log("Opened!"); },false);
-          //
-          // eventSource.addEventListener('error', function(e) {
-          //     console.log("Errored!"); },false);
-
           eventSource.addEventListener('rangeLevel', function(e) {
               var parsedData = JSON.parse(e.data);
-
-              if(parsedData.data >= 500 && parsedData.data<700){
+              var impactLevel = "low";
+              if(parsedData.data >= 300 && parsedData.data<500){
                 impactLevel = "low";
-              } else if (parsedData.data >= 700 && parsedData.data<900){
+              } else if (parsedData.data >= 500 && parsedData.data<700){
                 impactLevel = "medium";
-              } else if(parsedData.data >= 900 && parsedData.data<1200){
+              } else if(parsedData.data >= 700){
                 impactLevel = "high";
               }
 
@@ -36,8 +29,7 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
               tempSpan.innerHTML += " impact: " + impactLevel;
 
             tempSpan.style.fontSize = "28px";
-              tsSpan.innerHTML = "At timestamp " + parsedData.published_at;
-              tsSpan.style.fontSize = "9px";
+
           }, false);
       }
 
