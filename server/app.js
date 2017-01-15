@@ -6,7 +6,7 @@ var userRouter = require('./router/route1');
 var twilioCreds = require('./smsconfig.json');
 
 app.use(bodyParser.urlencoded({extended:true}));
-//.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use( express.static( "public" ));
 app.use('/router', userRouter);
 
@@ -30,14 +30,26 @@ var authToken = twilioCreds.authToken;
 //require the Twilio module and create a REST client
 var client = require('twilio')(accountSid, authToken);
 app.post('/twilio', function(req,res){
-  client.messages.create({
-      to: "+16126186587",
-      from: "+16122497350",
-      body: "https://projects.invisionapp.com/share/6NA1B95RV#/screens"
+
+var count = req.body[0].count;
   }, function(err, message) {
       res.send(message.sid);
   });
-});
+
+
+  app.post('/twilio', function(req,res){
+    console.log("request" + req);
+    client.messages.create({
+        to: "+16126186587",
+        from: "+16122497350",
+        body: req.mediumCount  + "Number of Hits. To view data click here: https://projects.invisionapp.com/share/2YA1BZ293#/screens"
+    }, function(err, message) {
+        res.send(message.sid);
+    });
+  });
+
+
+
 
 
 //server

@@ -12,10 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-animate": "^1.6.1",
+    "angular-chart.js": "^1.1.1",
     "angular-material": "^1.1.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongoose": "^4.7.6",
-    "twilio": "^2.11.1"
+    "twilio": "^2.11.1",
+    "ui-router": "^1.0.0-alpha.3"
   }
 }
