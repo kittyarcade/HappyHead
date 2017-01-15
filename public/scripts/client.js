@@ -8,24 +8,30 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
           var eventSource = new EventSource("https://api.particle.io/v1/devices/" + deviceID + "/events/?access_token=" + accessToken);
 
           eventSource.addEventListener('rangeLevel', function(e) {
-              var parsedData = JSON.parse(e.data);
-              var impactLevel = "low";
+              var parsedData = JSON.parse(e.data),
+              impactLevel = "low",
+              lowCount,
+              mediumCount,
+              highCount,
+              totalMediumHighCount;
 
               if(parsedData.data >= 500 && parsedData.data<700){
                 impactLevel = "low";
+                lowCount++;
               } else if (parsedData.data >= 700 && parsedData.data<900){
                 impactLevel = "medium";
+                mediumCount++;
               } else if(parsedData.data >= 900 && parsedData.data<1200){
                 impactLevel = "high";
+                highCount++
               }
               $http.post('/twilio', impactLevel).then(function(response){
-                
+
               });
 
               var tempSpan = document.getElementById("uptime");
               tempSpan.innerHTML += " impact: " + impactLevel;
-
-            tempSpan.style.fontSize = "28px";
+              tempSpan.style.fontSize = "28px";
 
           }, false);
       }
