@@ -9,12 +9,10 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
           var lowCount =0;
           var mediumCount=0;
           var highCount=0;
-            var impactLevel = "low";
+          var impactLevel = "low";
 
           eventSource.addEventListener('rangeLevel', function(e) {
-
               var parsedData = JSON.parse(e.data);
-
 
               if(parsedData.data >= 500 && parsedData.data<700){
                 impactLevel = "low";
@@ -23,13 +21,14 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
                 impactLevel = "medium";
                 mediumCount++;
               } else if(parsedData.data >= 900 && parsedData.data<1200){
-
                 impactLevel = "high";
+                smsTwilio();
                 highCount++;
               }
-              $http.post('/twilio', impactLevel).then(function(response){
 
-              });
+             function smsTwilio(){
+                $http.post('/twilio', impactLevel).then(function(response){});
+             }
 
               var tempSpan = document.getElementById("uptime");
               tempSpan.innerHTML += " impact: " + impactLevel;
