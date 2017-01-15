@@ -10,8 +10,9 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
               mediumCount = 0,
               highCount= 0,
               impactLevel = "low",
-              data = {},
-              totalMediumHighHits;
+              mediumData = {},
+              highData={};
+
 
           tempSpan.innerHTML = "Waiting for data...";
           eventSource.addEventListener('rangeLevel', function(e) {
@@ -22,15 +23,19 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
               } else if (parsedData.data >= 500 && parsedData.data<700){
                 impactLevel = "medium";
                 mediumCount++;
-                data.count=mediumCount;
-                data.impactLevel=impactLevel;
-                smsTwilio(data);
+                mediumData.count=mediumCount;
+                mediumData.impactLevel=impactLevel;
+                // if(mediumCount%5 == 0)
+                // {
+                smsTwilio(mediumData);
+
+                // }
               } else if(parsedData.data > 700){
                 impactLevel = "high";
                 highCount++;
-                data.count=highCount;
-                data.impactLevel=impactLevel;
-                smsTwilio(data);
+                highData.count=highCount;
+                highData.impactLevel=impactLevel;
+                smsTwilio(highData);
               }
              function smsTwilio(data){
                 $http.post('/twilio', data).then(function(response){
